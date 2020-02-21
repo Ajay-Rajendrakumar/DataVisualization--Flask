@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='Styles/Home.css') }}">
+  </head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+<div class="myNav">    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="/static/Log.png" height="34px" width="35px" ></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">   
+        
+         <li><font id="logo1">SwissRanks</font></li>
+        <li class="active" id="right">
+          <li><a href="#Home1">Home</a></li>
+        <li><a href="#dashboard">DashBoard</a></li>
+        <li><a href="#about">About Us</a></li>
+      
+      </ul>
+    </div>
+    </div>
+    </div>
+    </nav><br>
+<div id="boxes">
+
+<div style="top: 50%; left: 50%; display: none;" id="dialog" class="window"> 
+
+<div id="san">
+<a href="#" class="close agree"><img src="/static/close-icon.png" width="25" style="float:right; margin-right: -25px; margin-top: -20px;">
+</a><center>
+<h1>Hi there!  Welcome to Dashboard.</h1><BR>
+<h3>You can Visualize DataBases here</h3><BR></center>
+<h4>You can find <Br><UL>
+          <LI><h5><b>Grapical Visualization</b> features on left Yellow icons</h5></LI>
+          <li><h5><b>Other DB information</b> on Right yellow icons</h5></li>
+          <li><h5>For more <b>help</b> Click red icon</h5></li></UL></h4>
+
+</div>
+
+</div>
+
+<div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask"></div>
+
+
+</div> 
+
+<div class="container" id="Home1">
+<div class="col-sm-19 text-left" id="mainbody"> <div class="">
+      <center id="hhead"><h4>TURNKEY SOLUTIONS FOR GLOBAL INNOVATORS</h4>
+                <h1>WE HELP COMPANIES</h1><br><Br>
+                <img src="/static/Dashimg/Industry.png" id="img1"/>
+    </center>  <br><br>
+    <p>
+      <ul id="hinfo">
+        <li>Swiss Ranks is a licensed Design Engineering company providing a full set of product development and professional engineering services customers, entrepreneurs, start-ups and large corporations in the areas of mechanical, mechatronics, electrical and electronics disciplines.</li><br>
+<li>
+Integrating the leading edge design approach with traditional engineering principles, we provide our clients with the 'Right the First Time' innovative and aesthetically appealing product designs on time and on budget.
+</li><br><li>
+We blend creative and innovative thinking with knowledge from science and theory, and call this process the 'Art of Engineering' from the initial idea to Finished Product, from concept modelling to executing production.
+</li><br>
+<li>
+We provide both customized and individual consulting services for new products, cost reduction, and also product improvements for your existing product.
+</li></ul></p><bR><br><bR><center><q>Developing innovative products demands the contribution of a top-notch engineering design company...</q></center><br><br>
+
+</div>
+</div>
+<br><br>
+</div>
+
+<!-- Business Logic -->
+<div class="container" id="dashboard"><br><br>
+    <br>
+    <h3 class="text-center"><b>Dashboard</b> <br>
+      <br>
+      <p>
+        Interpretation of Data In Visual Form : 
+        <div class="container"> 
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+      <li data-target="#myCarousel" data-slide-to="6"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active "><center>
+        <img src="/static/Dashimg/1.jpg" style="width:30% ;height:90%;"></center>
+      </div>
+
+      <div class="item"><center>
+        <img src="/static/Dashimg/2.jpg"  style="width:30%;height:90%;"></center>
+      </div>
+    
+      <div class="item"><center>
+        <img src="/static/Dashimg/3.jpg" style="width:30%;height:90%;"></center>
+      </div>
+      <div class="item"><center>
+        <img src="/static/Dashimg/4.jpg" style="width:30%;height:90%;"></center>
+      </div>
+    
+    <div class="item"><center>
+        <img src="/static/Dashimg/5.jpg" style="width:30%;height:90%;"></center>
+      </div>
+    
+    <div class="item"><center>
+        <img src="/static/Dashimg/6.jpg" style="width:30%;height:90%;"></center>
+      </div>
+    
+    <div class="item"><center>
+        <img src="/static/Dashimg/7.jpg" style="width:30%;height:90%;"></center>
+      </div>
+ 
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+      </p>
+    <a class="btn btn-primary" role="button" id="go">Data Visualize</a>
+<br><br>
+</h3> 
+
+</div>
+
+
+<!-- End OF Business Logic -->
+<br><br><Br>
+<br>
+<div id="about">
+ <div id="contact" class="container">
+  <br><br><Br><Br>
+  <h3 class="text-center">About Us</h3>  
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Location</a></li>
+    <li><a data-toggle="tab" href="#menu1">Email</a></li>
+  </ul><br><br><Br>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2>Location</h2>
+    <p><span class="glyphicon glyphicon-map-marker"></span> &nbsp;&nbsp;&nbsp;&nbsp;Coimbatore, TamilNadu, India</p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h2>Mail</h2>
+      <p><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;Email:contact@swissranks.com</p>
+    </div>
+
+    </div>
+    </div>
+  </div>
+  <br><br><br><br><br>
+  
+<footer class="text-center">
+
+</footer>
+</div>
+
+
+</body>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+ $(".navbar a, footer a[href='#Home1']").on('click', function(event) {
+    if (this.hash !== "") {
+     event.preventDefault();
+     var hash = this.hash;
+    $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+            window.location.hash = hash;
+      });
+    }
+  });
+});
+$("#go").click(function() {  
+    var id = '#dialog';
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+    $('#mask').fadeIn(500); 
+    $('#mask').fadeTo("slow",0.9);
+    var winH = $(window).height();
+    var winW = $(window).width();
+    $(id).css('top',  winH/2-$(id).height()/2);
+    $(id).css('left', winW/2-$(id).width()/2);
+    $(id).fadeIn(2000);   
+  $('.window .close').click(function (e) {
+    e.preventDefault();
+    window.location.href="{{ url_for('dash') }}";
+    $('#mask').hide();
+    $('.window').hide();
+  });   
+  
+
+  $('#mask').click(function () {
+    $(this).hide();
+
+    $('.window').hide();
+  });
+
+});
+
+
+  
+</script>
+</html>
