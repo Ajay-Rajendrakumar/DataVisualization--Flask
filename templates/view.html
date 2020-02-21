@@ -1,0 +1,66 @@
+
+<html>
+<head>
+	<style>
+.back {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  position: fixed;
+  bottom: 2px;
+  right: 2px;
+  padding: 5px;	 
+  font-size: 15px;
+  font-family: arial;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;	
+
+}
+
+.back:hover {
+  background-color: #555555;
+  color: white;
+}
+table{
+	border-radius: 10px;
+}
+table, th, td,tr {
+  border: 3px solid black;
+  text-align: left;
+  padding: 2px;
+  
+  background-color: silver
+}
+body{
+	background-color: black;
+}
+h1{
+	font-size: 25px;
+	color: white;
+	font-family: Cooper black;
+}
+	</style>
+	</head>
+<body><center><h1>DataBase</h1>
+	<table>
+		{% for head in clname %}
+			<th>{{ head }}</th>
+		{% endfor %}	
+		{% for item in data %}
+		<tr>
+		    <td>{{item[0]}}</td> 
+		    <td>{{item[1]}}</td>
+		    <td>{{item[2]}}</td> 
+		    <td>{{item[3]}}</td>
+		    <td>{{item[4]}}</td> 
+	    	<td>{{item[5]}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	
+	</center>
+	<a class="back" href="{{ url_for('dash') }}" role="button">Dashboard</a>
+	</body>
+</html>

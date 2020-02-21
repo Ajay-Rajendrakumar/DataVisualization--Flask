@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DashBoard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta id="imgsrc" data-name="{{ f }}" data-other="{{other}}">
+  <style>
+ .topnav {
+  overflow: hidden;
+  background-color: grey;
+}
+body{
+  background-color: black;
+}
+
+.topnav {
+
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  height: 60px;
+  font-family: Castellar;
+  font-weight: bold;
+}
+
+#mySidenav a {
+  position: absolute;
+  left: -140px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 150px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  border-radius: 0 5px 5px 0;
+  font-weight: bold;
+}
+#rightSidenav a {
+  position: absolute;
+  right: -140px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 150px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  border-radius: 5px 5px 5px 5px;
+  font-weight: bold;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+#rightSidenav a:hover {
+  right: 0;
+}
+
+
+#bar {
+  top: 80px;
+  background-color: yellow;
+}
+
+#pie {
+  top: 180px;
+  background-color: yellow;
+}
+
+#scatter {
+  top: 280px;
+  background-color: yellow;
+}
+#start {
+  top: 380px;
+  background-color: red;
+}
+
+#line {
+  top: 380px;
+  background-color: yellow;
+}
+
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar a {
+  
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
+
+.datadisp{
+  display: none;
+  background-color: white;
+  height:62%;
+  position: absolute;
+  left:20px;
+  width:40%;
+  border-radius: 20px;
+  top:15%;
+  overflow: scroll;
+  border-width:10px;
+    border-style:solid;
+    border-color:black;
+}
+.graphdisp{
+  display: none;
+  top:15%;
+  background-color: white;
+  height:62%;
+  position: absolute;
+  right:20px;
+  width:55%;
+  border-radius: 20px;
+border-width:10px;
+    border-style:solid;
+    border-color:black;
+}
+.inp{
+  
+  background-color: white;
+  position: fixed;
+  width: 60%;
+  height: 60%;
+  left:20%;
+  border-radius: 20px;
+}
+input[type=submit] {
+  padding: 15px 25px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+input[type=submit]:hover {background-color: #3e8e41}
+
+input[type=submit]:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+input[type=text]{
+  border-radius: 10px;
+
+} 
+
+#barf{
+  display: none;
+  position: fixed;
+  top:25%;
+  left:40%;
+}
+
+#pief{
+  display: none;
+  position: fixed;
+  top:25%;
+  left:40%;
+}
+
+#hist{
+  display: none;
+  position: fixed;
+  top:25%;
+  left:40%;
+}
+#linef{
+  display: none;
+  position: fixed;
+  top:25%;
+  left:40%;
+}
+#query{
+  display: none;
+  position: fixed;
+  top:25%;
+  left:40%;
+}
+#query input[type=text]{
+  width:200%;
+  border-radius: 1px;
+}
+.refresh {
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 20px
+}
+table, th, td {
+  border: 3px solid black;
+  text-align: left;
+  padding: 2px;
+
+}
+
+#shade,
+#modal {
+  display: none;
+}
+
+#shade {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 150%;
+}
+
+#modal {
+  position: fixed;
+  z-index: 101;
+  top: 20%;
+  left: 28%;
+  width: 200%;
+  border-radius:  5px;
+
+}
+
+#shade {
+  background: silver;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+#helpbox{
+  height:300px;
+  width: 20%;
+  background-color:   black;
+  border-radius:  20px;
+  color:  white;
+  border-width:5px;
+border-style:solid;
+border-color:orange;
+}
+#close{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+<center>DashboarD</center>
+</div>
+ <br><br><br>
+
+
+<div class="datadisp" id="info">
+ <center> <h4><b>Data</b></h4></center>
+  <h6><center><b>Plots:</b></center></h6>
+        <center>
+    {% if head is defined %}
+      <table cellspacing="5">
+      <th>{{head}}</th><th>Value</th>
+      {% for i in l %}
+        {% set item_1 = l[loop.index-1] %}
+        {% set item_2 = g[loop.index-1] %}
+       <tr>
+             <td> {{ item_1 }} </td>
+             <td>  {{ item_2 }} </td>
+      </tr>
+      {% endfor %}
+    {% endif %}
+
+    </table>
+
+    </center>
+</div>
+
+<div class="graphdisp" id="graph">
+  <center><h4><b>Visualization</b></h4></center>
+    
+    <center><img src="{{f}}" id="graphy" width="60%" height="60%"></center>
+    <button class="refresh" onclick="refimg()">Refresh</button>
+</div>
+
+<div class="inp" id="inp">
+<div id="entry">
+  <center> 
+ <h1>Welcome to Dashboard</h1><br>
+  {% if res is defined %}
+    
+    <h4>Your {{ res }} is ready! Please check Graph tab!</h4>
+    {% if warn == "o" %}
+      <br><br><br><br>
+      <h6 style="color=red;">Warning:Due to Large number of values visual may be Congested,Try using reports for verification</h6>
+  {% endif %}  
+  {% endif %}
+  {% if error == "yes"%}
+    
+    <h5>Sorry ,Field not available,select <b>red icon</b> for <b>help</b></h5>
+  {% else %}
+      <h4>Your can place you request here!</h4>
+{% endif %}
+
+</center>
+</div>
+<div id="container">
+<div name="barf" id="barf">
+<form method="POST" action="{{ url_for('bar') }}" >
+      <center><h4>Bar Chart</h4></center><br>
+      <center><b>Enter a Column Name for mapping:</b><br><br>
+    <input type="text" name="object" placeholder="Enter Here" required><br><br>
+    <input type="submit" value="Generate"></center>
+</form>
+</div>
+<div name="pief" id="pief">
+<form method="POST" action="{{ url_for('pie') }}">
+      <center><h2>Pie Chart</h2></center><br>
+      <center><b>Enter a Column Name for mapping:</b><br><br>
+    <input type="text" name="object" placeholder="Enter Here" required><br><br>
+    <input type="submit" value="Generate"></center>
+</form>
+</div>
+<div name="linef" id="linef">
+<form method="POST" action="{{ url_for('sca') }}">
+      <center><h2>Scatter Plot</h2></center><br>
+      <center><b>Enter a Column Name for mapping:</b><br><br>
+    <input type="text" name="object" placeholder="Enter Here" required><br><br>
+    <input type="submit" value="Generate"></center>
+</form>
+</div>
+
+<div name="hist" id="hist">
+<form method="POST" action="{{ url_for('line') }}">
+      <center><h2>Line Plot</h2></center><br>
+      <center><b>Enter a Column Name for mapping:</b><br><br>
+    <input type="text" name="object" placeholder="Enter Here" required><br><br>
+    <input type="submit" value="Generate"></center>
+</form>
+</div>
+                          
+<div name="query" id="query">
+<form method="POST" action="{{ url_for('query') }}">
+      <center><h4>SQL Query</h4></center><br>
+      <b>Enter a query for processing:</b><br><br><center>
+    <input type="text" name="object" placeholder="Enter your query Here" value="Select * from Parts_Info where" autocomplete="off" required><br><br>
+    <input type="submit" value="Generate"></center>
+</form>
+</div>
+
+<div name="help" id="help">
+<div id="shade"></div>
+<div id="modal">
+  <div id="helpbox" style="overflow:  scroll;" >
+            <center>  <h2>HELP</h2></center>
+    <h4>Your can choose below column names for processing:</h4>
+    {% if cols is defined %}
+     <ul> {% for i in cols %}
+          <li> {{ i }}</li>
+      {% endfor %}</ul>
+    {% endif %}
+
+  </div>
+  <button id="close">Close</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a  href="#" onclick="show('barf')" id="bar">Bar Chart</a>
+  <a href="#" onclick="show('pief')" id="pie">Pie Chart</a>
+  <a href="#" onclick="show('linef')" id="scatter">Scatter Plot</a>
+  <a href="#" id="line" onclick="show('hist')">Line Plot</a>
+</div>
+<div id="rightSidenav" class="rightsidenav">
+  <a href="{{ url_for('view') }}" id="bar">View DB</a>
+  <a href="#" onclick="show('query')" id="pie"><h4><b>Select Query</b></h4></a>
+  <a href="https://www.kdnuggets.com/2019/04/best-data-visualization-techniques.html" id="scatter">Explore!</a>
+  <a  id="start" onclick="show('help')">Help</a>
+  
+</div>
+<div class="navbar"><center>
+  <a onclick="HideFunction('info','graph')">Graph</a>
+  <a class="active" onclick="HideFunction1('inp')">Info</a>
+  </center>
+</div>  
+</body>
+<script>
+var modal = document.getElementById('modal');
+var shade = document.getElementById('shade');
+document.getElementById('start').onclick = function() {
+  modal.style.display = shade.style.display = 'block';
+};
+document.getElementById('close').onclick = function() {
+  modal.style.display = shade.style.display = 'none';
+};
+
+if (!('maxHeight' in document.body.style)) {
+  function modalsize() {
+    var top = document.documentElement.scrollTop;
+    var winsize = document.documentElement.offsetHeight;
+    var docsize = document.documentElement.scrollHeight;
+    shade.style.height = Math.max(winsize, docsize) + 'px';
+    modal.style.top = top + Math.floor(winsize / 3) + 'px';
+  };
+  modal.style.position = shade.style.position = 'absolute';
+  window.onscroll = window.onresize = modalsize;
+  modalsize();
+}
+  function HideFunction(x,y) {
+  var x = document.getElementById(x);
+  var y = document.getElementById(y);
+  var z = document.getElementById("inp");
+  if (x.style.display === "none" && y.style.display === "none" ) {
+    x.style.display = "block";
+    y.style.display = "block";
+    z.style.display = "none"; 
+          } 
+   else{
+
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+}
+}
+function HideFunction1(x) {
+  var x = document.getElementById(x);
+  var y = document.getElementById("info");
+  var z = document.getElementById("graph");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+
+  }
+  else{
+    x.style.display = "none";
+    y.style.display = "block";
+    z.style.display = "block";
+  }
+  }
+function show(x) {
+  var y = document.getElementById("pief");
+  y.style.display = "none";
+  var y = document.getElementById("barf");
+  y.style.display = "none";
+  var y = document.getElementById("linef");
+  y.style.display = "none";
+  var y = document.getElementById("hist");
+  y.style.display = "none";
+  var y = document.getElementById("entry");
+  y.style.display = "none";
+  var y = document.getElementById("query");
+  y.style.display = "none";
+  
+  var z = document.getElementById(x);
+    z.style.display = "block";
+}
+
+
+  </script>
+</html>
