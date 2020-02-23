@@ -1,0 +1,129 @@
+<style>
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .row.content {height: 450px}
+
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }    
+
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+      @media screen and (max-width: 800px) {
+      .sidenav {
+        height: auto;
+        padding: 0px;
+      }
+      .row.content {height:auto;} 
+    }
+    body{
+      background-color: black;
+    }
+    .myNav{
+      height: 60px;
+      align-content: center;
+    }
+
+#topic{
+  position: relative;
+  font-size: 60px;
+  font-family: Copperplate Gothic Bold;
+
+}
+    #logo1{
+        position: relative;
+        top:3px;
+        font-size: 30px;
+        color: orange;
+        font-family:cooper black;
+        font-weight: bold;
+    
+  }
+
+  li{
+        position:relative;
+        top:9px;
+        font-size: 20px;
+        font-family: Arial;
+
+  }
+
+  #img1{
+    width:70%;
+    max-height: 30%;
+    border-radius: 10px;
+
+  }
+#hhead{
+  font-weight: bold;
+  color: orange;
+}
+q{
+  font-size: 20px;
+  color: gold;
+  font-weight: bold;
+}
+#Home1{
+  padding: 100px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+#dashboard h3{
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size:40px;
+}
+#Home1 h1{
+  font-weight: bold;
+}
+#hinfo{
+  color:silver;
+}
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#26262c;
+  display:none;
+}  
+#boxes .window {
+  position:absolute;
+  width:440px;
+  height:400px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+  border-radius: 5px;
+  text-align: center;
+}
+#boxes #dialog {
+  width:450px; 
+  position: fixed;
+  bottom:200px;
+  left:30%;
+  padding: 10px 10px 10px 10px;
+  background-color:white;
+  font-size: 15pt;
+}
+
+.agree:hover{
+  background-color: #D1D1D1;
+}
+.popupoption:hover{
+  background-color:#D1D1D1;
+  color: green;
+}
+.popupoption2:hover{
+  color: red;
+}
+
+</style>

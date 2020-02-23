@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DashBoard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='Styles/Dashboard.css') }}">
+ </head>
+
+<body>
+
+<div class="topnav">
+            <center>Dashboard</center>
+</div>
+<br><br><br>
+
+<div class="datadisp" id="info">
+ <center> <h4><b>Data</b></h4></center>
+  <h6><center><b>Statistics:</b></center></h6>
+        <center>
+            {% if head is defined %}
+              <table cellspacing="5">
+              <th>{{head}}</th><th>Value</th>
+              {% for i in l %}
+                {% set item_1 = l[loop.index-1] %}
+                {% set item_2 = g[loop.index-1] %}
+                <tr>
+                  <td> {{ item_1 }} </td>
+                  <td>  {{ item_2 }} </td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+            </table>
+        </center>
+</div>
+
+
+<div class="graphdisp" id="graph">
+    <center><h4><b>Visualization</b></h4></center>
+    <center><img src="{{f}}" id="graphy" width="60%" height="60%"></center>
+    <button class="refresh" onclick="refimg()">Refresh</button>
+</div>
+
+<div class="inp" id="inp">
+    <div id="entry">
+    <center> 
+          <h1>Welcome to Dashboard</h1><br>
+          {% if res is defined %}
+            <h4>Your {{ res }} is ready! Please check Graph tab!</h4>
+            {% if warn == "o" %}
+              <br><br><br><br>
+              <h6 style="color:red;">Warning:Due to Large number of values visual may be Congested,Try using reports for verification</h6>
+            {% endif %}
+          {% else %}            
+              <h4>Your can place you request here!</h4>
+          {% endif %}
+
+    </center>
+</div>
+
+<div id="container">
+  <div name="barf" id="barf">
+      <form method="POST" action="{{ url_for('bar') }}" >
+            <center><h2>Bar Chart</h2></center><br>
+            <center><b>Select an Category for mapping Bar graph:</b><br><br>
+            <select  name="object">
+                {% if cols is defined %}
+                  {% for i in cols %}
+                    <option  value="{{ i }}" selected>{{ i }}</option>
+                  {% endfor %}
+            {% endif %}
+            </select>
+            <br><br>
+            <input type="submit" value="Generate"></center>
+    </form>
+</div>
+
+<div name="pief" id="pief">
+        <form method="POST" action="{{ url_for('pie') }}">
+            <center><h2>Pie Chart</h2></center><br>
+            <center><b>Select an Category for mapping Pie chart:</b><br><br>
+            <select  name="object">
+                {% if cols is defined %}
+                   {% for i in cols %}
+                      <option  value="{{ i }}" selected>{{ i }}</option>
+                    {% endfor %}
+                {% endif %}
+                </select><br><br>
+            <input type="submit" value="Generate"></center>
+        </form>
+</div>
+
+<div name="linef" id="linef">
+      <form method="POST" action="{{ url_for('sca') }}">
+          <center><h2>Scatter Plot</h2></center><br>
+          <center><b>Select an Category for Scatter ploting:</b><br><br>
+          <select  name="object">
+            {% if cols is defined %}
+              {% for i in cols %}
+                <option  value="{{ i }}" selected>{{ i }}</option>
+              {% endfor %}
+            {% endif %}
+          </select><br><br>
+          <input type="submit" value="Generate"></center>
+    </form>
+</div>
+
+<div name="hist" id="hist">
+      <form method="POST" action="{{ url_for('line') }}">
+          <center><h2>Line Plot</h2></center><br>
+          <center><b>Select an Category for Line plotting</b><br><br>
+          <select  name="object">
+          {% if cols is defined %}
+             {% for i in cols %}
+                <option  value="{{ i }}" selected>{{ i }}</option>
+              {% endfor %}
+          {% endif %}
+          </select><br><br>
+          <input type="submit" value="Generate"></center>
+      </form>
+</div>
+                          
+
+<div name="query" id="query" class="qry">
+      <form method="POST" action="{{ url_for('query') }}">
+            <center><h2>Select Query</h2></center><br>
+            <b>Enter a query for processing:</b><br><br><center>
+            <textarea name="object"  placeholder="Select * from TABLE_NAME" rows="3" cols="50" required></textarea>
+            <br><br>
+            <input type="submit" value="Generate"></center>
+      </form>
+</div>
+
+
+<div name="view" id="view" >
+      <form method="POST" action="{{ url_for('view') }}">
+            <center><h2>Database View</h2></center><br>
+            <b>Available Tables in current Database are:</b><br><br><center>
+            <select  name="object">
+            {% if tbname is defined %}
+              {% for i in tbname %}
+                <option  value="{{ i }}" selected>{{ i }}</option>
+              {% endfor %}
+            {% endif %}
+          </select>
+            <br><br>
+            <input type="submit" value="View"></center>
+      </form>
+</div>
+
+<div name="report" id="report" >
+      <form method="POST" action="{{ url_for('report') }}">
+            <center><h2>Report Generation</h2></center><br>
+            <b>Enter an file name to store your reports:</b><br><br><center>
+            <input type=text name="object"  placeholder="Filename" required/>
+            <br><br>
+            <input type="submit" value="Generate" ></center>
+      </form>
+k=</div>
+
+<div name="help" id="help">
+  <div id="shade"></div>
+    <div id="modal">
+        <div id="helpbox" style="overflow:  scroll;" >
+          <center>  <h2>HELP</h2></center>
+          <h4>Your can choose below column names for processing:</h4>
+              {% if cols is defined %}
+                  <ul> {% for i in cols %}
+                      <li> {{ i }}</li>
+                      {% endfor %}</ul>
+              {% endif %}
+              {% if tbname is defined %}
+                <h4>Available Tables</h4>
+                  <ul> {% for i in tbname %}
+                  <li> {{ i }}</li>
+                  {% endfor %}</ul>
+              {% endif %}
+        </div>
+        <button id="close">Close</button>
+      
+    </div>
+</div>
+
+</div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a  href="#" onclick="show('barf')" id="bar">Bar Chart</a>
+  <a href="#" onclick="show('pief')" id="pie">Pie Chart</a>
+  <a href="#" onclick="show('linef')" id="scatter">Scatter Plot</a>
+  <a href="#" id="line" onclick="show('hist')">Line Plot</a>
+</div>
+<div id="rightSidenav" class="rightsidenav">
+  <a href="#" onclick="show('view')" id="bar">View DB</a>
+  <a href="#" onclick="show('query')" id="pie"><h4><b>Select Query</b></h4></a>
+  <a href="#" onclick="show('report')" id="scatter">Report</a>
+  <a  id="start" onclick="show('help')">Help</a>
+</div>
+
+<div class="navbar">
+  <center>
+  <a onclick="HideFunction('info','graph')"><b>Graph</b></a>
+  <a class="active" onclick="HideFunction1('inp')"><b>Home</b></a>
+  </center>
+</div>  
+
+</body>
+
+<script>
+var modal = document.getElementById('modal');
+var shade = document.getElementById('shade');
+document.getElementById('start').onclick = function() {
+  modal.style.display = shade.style.display = 'block';
+};
+document.getElementById('close').onclick = function() {
+  modal.style.display = shade.style.display = 'none';
+};
+
+if (!('maxHeight' in document.body.style)) {
+  function modalsize() {
+    var top = document.documentElement.scrollTop;
+    var winsize = document.documentElement.offsetHeight;
+    var docsize = document.documentElement.scrollHeight;
+    shade.style.height = Math.max(winsize, docsize) + 'px';
+    modal.style.top = top + Math.floor(winsize / 3) + 'px';
+  };
+  modal.style.position = shade.style.position = 'absolute';
+  window.onscroll = window.onresize = modalsize;
+  modalsize();
+}
+  function HideFunction(x,y) {
+  var x = document.getElementById(x);
+  var y = document.getElementById(y);
+  var z = document.getElementById("inp");
+  if (x.style.display === "none" && y.style.display === "none" ) {
+    x.style.display = "block";
+    y.style.display = "block";
+    z.style.display = "none"; 
+          } 
+   else{
+
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+}
+}
+function HideFunction1(x) {
+  var x = document.getElementById(x);
+  var y = document.getElementById("info");
+  var z = document.getElementById("graph");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+
+  }
+  else{
+    x.style.display = "none";
+    y.style.display = "block";
+    z.style.display = "block";
+  }
+  }
+function show(x) {
+  var y = document.getElementById("pief");
+  y.style.display = "none";
+  var y = document.getElementById("barf");
+  y.style.display = "none";
+  var y = document.getElementById("linef");
+  y.style.display = "none";
+  var y = document.getElementById("hist");
+  y.style.display = "none";
+  var y = document.getElementById("entry");
+  y.style.display = "none";
+  var y = document.getElementById("query");
+  y.style.display = "none";
+  var y = document.getElementById("view");
+  y.style.display = "none";
+   var y = document.getElementById("report");
+  y.style.display = "none";
+  var z = document.getElementById(x);
+    z.style.display = "block";
+}
+
+function refimg(){
+  location.reload(); 
+}
+
+</script>
+</html>

@@ -1,0 +1,25 @@
+
+<html>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='Styles/view.css') }}">
+<head>
+
+	</head>
+<body><center><h1><b>View</b></h1>
+	<table>
+		{% for head in clname %}
+			<th>{{ head }}</th>
+		{% endfor %}	
+		{% for item in data %}
+		<tr>
+			{% for i in item %}
+		    <td>{{i}}</td> 
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+
+	
+	</center>
+	<a class="back" href="{{ url_for('dash') }}" role="button">Dashboard</a>
+	</body>
+</html>
